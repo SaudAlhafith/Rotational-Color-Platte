@@ -54,8 +54,8 @@ struct ContentView: View {
                                 .frame(width: (size / 3 * 1.4 / 2), height: (size / 3 * 1.4))
                                 .offset(y: -(size / 3 * 1.4 / 2))
                                 .rotationEffect(Angle(degrees: indexcg * (rotation / CGFloat(platteColors.count))), anchor: .center)
+                                .transition(.scale.animation(Animation.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.5).delay(order * 0.02)))
                                 .shadow(color: .black.opacity(0.5), radius: 6)
-                                .transition(.scale.animation(Animation.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 1.5).delay(order * 0.04)))
                                 .onTapGesture {
                                     withAnimation {
                                         rotation = 0
@@ -73,8 +73,6 @@ struct ContentView: View {
                         
                     }
                 }
-                .id(showPlatte)
-                .transition(.opacity.animation(Animation.easeInOut(duration: 0.2).delay(0.1)))
                 .zIndex(2)
             }
         }
