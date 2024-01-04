@@ -8,22 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    let size: CGFloat
     @State var currentColor: Color = .red
     @State var showPlatte: Bool = false
-    let platteColors: [Color] = [.red, .pink, .purple, .blue, .cyan, .green, .yellow, .orange]
+    let platteColors: [Color] = [.red, .pink, .purple, .blue, .cyan, .green, .yellow, .orange] // you can add as many colors as you want
     @State var rotation: CGFloat = 0
+    
+    init(size: CGFloat = 300) {
+        self.size = size // also you can control the size
+    }
     
     var body: some View {
         VStack {
             ZStack {
                 Circle()
                     .fill(Color.white)
-                    .frame(width: showPlatte ? 280 : 150)
+                    .frame(width: showPlatte ? size : size * 0.5)
                     .shadow(color: .black.opacity(0.2), radius: 10)
                     .overlay {
                         Circle()
                             .fill(currentColor)
-                            .frame(width: 110)
+                            .frame(width: size / 3)
                             .shadow(color: .black.opacity(0.4), radius: 6)
                     }
                     .onTapGesture {
@@ -46,8 +51,8 @@ struct ContentView: View {
                             let order: CGFloat = showPlatte ? indexcg : CGFloat(platteColors.count - 1 - index)
                             Capsule()
                                 .fill(platteColors[index])
-                                .frame(width: 80, height: 150)
-                                .offset(y: -60)
+                                .frame(width: (size / 3 * 1.4 / 2), height: (size / 3 * 1.4))
+                                .offset(y: -(size / 3 * 1.4 / 2))
                                 .rotationEffect(Angle(degrees: indexcg * (rotation / CGFloat(platteColors.count))), anchor: .center)
                                 .shadow(color: .black.opacity(0.5), radius: 6)
                                 .transition(.scale.animation(Animation.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 1.5).delay(order * 0.04)))
@@ -69,7 +74,7 @@ struct ContentView: View {
                     }
                 }
                 .id(showPlatte)
-                .transition(.opacity.animation(Animation.easeInOut(duration: 0.3)))
+                .transition(.opacity.animation(Animation.easeInOut(duration: 0.2).delay(0.1)))
                 .zIndex(2)
             }
         }
