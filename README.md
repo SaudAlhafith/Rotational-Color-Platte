@@ -1,5 +1,9 @@
 # Rotational Color Palette Component in SwiftUI
 
+
+https://github.com/user-attachments/assets/bea04435-2a56-4136-96bc-f8656204ca3a
+
+
 ## Overview
 This SwiftUI component, `ContentView`, provides an interactive and visually appealing rotational color palette. Ideal for applications requiring color selection, it offers a compact and expandable interface for users to choose from a predefined set of colors.
 
